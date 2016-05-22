@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1020289538545",
+    "project_id": "sociallogin-f1064"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020289538545:android:0aeadabf703f2818",
+        "android_client_info": {
+          "package_name": "com.renasoft.sociallogin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020289538545-5l315ejoj4sk684eo50uch93jn3eh6r5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.renasoft.sociallogin",
+            "certificate_hash": "C0852059E1EAE0A46A86EF8FA07D88A29795831D"
+          }
+        },
+        {
+          "client_id": "1020289538545-0gh8066albghro7549kuvvmu9hkg4kpn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZp6igzfWifbu3JvNgbEbDZ20toPXPYvU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

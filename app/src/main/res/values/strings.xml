@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SocialLogin</string>
+
+    <string name="Client_ID">1020289538545-0gh8066albghro7549kuvvmu9hkg4kpn.apps.googleusercontent.com</string>
+    <string name="title_activity_user_data">UserDataActivity</string>
+    <string name="action_settings">Settings</string>
+</resources>
