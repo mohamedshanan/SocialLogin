@@ -2,7 +2,6 @@ package com.renasoft.sociallogin;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,22 +15,8 @@ import com.squareup.picasso.Picasso;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class UserDataActivityFragment extends Fragment implements View.OnClickListener {
+public class UserDataActivityFragment extends Fragment {
     Button signOut;
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.sign_out:
-                signOut.setEnabled(false);
-                new GoogleAgent((AppCompatActivity) getActivity()).signOut();
-                getActivity().finish();
-                //signOut.setEnabled(true);
-                break;
-        }
-    }
-
-    Bundle b;
 
     public UserDataActivityFragment() {
     }
@@ -47,10 +32,6 @@ public class UserDataActivityFragment extends Fragment implements View.OnClickLi
         TextView display_name = (TextView) rootView.findViewById(R.id.display_name);
         TextView email = (TextView) rootView.findViewById(R.id.email);
         TextView scopes = (TextView) rootView.findViewById(R.id.scopes);
-
-        signOut = (Button) rootView.findViewById(R.id.sign_out);
-        signOut.setEnabled(true);
-        signOut.setOnClickListener(this);
 
         if(account.getPhotoUrl()!=null) {
             Picasso.with(getActivity()).load(account.getPhotoUrl()).into(profile_photo);

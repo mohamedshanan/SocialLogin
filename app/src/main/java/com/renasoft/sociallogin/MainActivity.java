@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String BUNDLE_KEY = "userAccount";
     GoogleAgent googleAgent;
     TwitterAgent twitterAgent;
+
+    GoogleSignInAccount userAccount;
     User twitter_user;
 
     Button google_button;
@@ -30,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void init() {
-        googleAgent = new GoogleAgent(this);
-        twitterAgent = new TwitterAgent(this);
 
         google_button = (Button) findViewById(R.id.google_button);
         twitter_button = (Button) findViewById(R.id.twitter_button);
@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        googleAgent = new GoogleAgent(this);
+        twitterAgent = new TwitterAgent(this);
         switch(v.getId()) {
             case (R.id.google_button):
                 googleAgent.signIn();
@@ -56,30 +58,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == GoogleAgent.GOOGLE_SIGNIN_CODE) {
 
-        if(requestCode == GoogleAgent.GOOGLE_SIGNIN_CODE) {
+                userAccount = googleAgent.onActivityResult(data);
+                if (userAccount != null) {
 
-            GoogleSignInAccount userAccount = googleAgent.checkSignIn(requestCode, data);
-            if (userAccount != null) {
-                Intent googleIntent = new Intent(this, UserDataActivity.class);
-                Bundle accountBundle = new Bundle();
-                accountBundle.putParcelable(BUNDLE_KEY, userAccount);
-                googleIntent.putExtras(accountBundle);
-                startActivity(googleIntent);
-            }
-        }
-
-        else {
-            twitterAgent.onActivityResult(requestCode, resultCode, data);
-            if (twitter_user != null) {
-                Intent twitterIntent = new Intent(this, TwitterDetails.class);
-                twitterIntent.putExtra("name", twitter_user.name);
-                twitterIntent.putExtra("email", twitter_user.email);
-                twitterIntent.putExtra("createdAt", twitter_user.createdAt);
-                twitterIntent.putExtra("description", twitter_user.description);
-                twitterIntent.putExtra("image", twitter_user.profileBackgroundImageUrl);
-
-                startActivity(twitterIntent);
+                    // start UserDataActivty to display the data of the current google user "userAccount"
+                    Intent googleIntent = new Intent(this, UserDataActivity.class);
+                    Bundle accountBundle = new Bundle();
+                    accountBundle.putParcelable(BUNDLE_KEY, userAccount);
+                    googleIntent.putExtras(accountBundle);
+                    startActivity(googleIntent);
+                }
+            } else {
+                twitterAgent.onActivityResult(requestCode, resultCode, data);
             }
         }
     }
